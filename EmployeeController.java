@@ -22,8 +22,7 @@ import TaskManagement_ServiceImplementation.EmployeeServiceImplementaton;
 @RestController
 @RequestMapping("/api/v1/employee")
 public class EmployeeController {
-	
-	@Autowired
+
 	private EmployeeServiceImplementaton service;
 	
 	
@@ -31,8 +30,8 @@ public class EmployeeController {
 		this.service = service;
 	}
 	
-	@PostMapping("bus/saveBus")
-	public ResponseEntity <Employee> saveBusDetails(@RequestBody Employee employee){
+	@PostMapping("/saveEmp")
+	public ResponseEntity <Employee> saveEmployee(@RequestBody Employee employee){
 		try {
 		return new ResponseEntity<Employee>(service.saveEmployee(employee), HttpStatus.CREATED);
 	  }
@@ -42,7 +41,7 @@ public class EmployeeController {
 	}
 	
 	
-	@GetMapping("bus/readBus/{id}")
+	@GetMapping("/readEmp/{id}")
 	public ResponseEntity<Employee>  getTaskById(@PathVariable("id")  int empId){
 		System.out.println(empId); 
 		Optional<Employee> emp = service.getTaskById(empId);
